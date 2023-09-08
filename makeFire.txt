@@ -1,0 +1,38 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Startflame : MonoBehaviour
+{
+    //public ParticleSystem flame;
+    public ParticleSystem flame;
+    public ParticleSystem sflame;
+    public GameObject FireSuccess;
+    int hit;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        hit = 0;
+        FireSuccess.SetActive(false);
+    }
+
+    // Update is called once per frame
+    void OnCollisionEnter(Collision col)
+    {
+        if (col.gameObject.name == "stone")
+        {
+            Debug.Log("hit!");
+            hit++;
+            sflame.Play();
+        }
+
+        if (hit == 5)
+        {
+            Debug.Log("flame!");
+            flame.Play();
+            FireSuccess.SetActive(true);
+        }
+    }
+
+}
