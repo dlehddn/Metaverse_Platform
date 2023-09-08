@@ -1,0 +1,142 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class TextScript : MonoBehaviour
+{
+    public Text Keytxt;
+    public Text Hinttxt;
+    public Text Cointxt;
+    public GameObject Nkey;  //코인개수 0개일 때 키 구매버튼 (검정)
+    public GameObject Nhint; //코인개수 0개일 때 힌트 구매버튼 (검정)
+    public GameObject Ykey; //원래 키 구매 버튼
+    public GameObject Yhint; //원래 힌트 구매 버튼
+    public GameObject hintO; // 힌트개수 1개 이상 -> 사용버튼 원래대로 
+    public GameObject hintX; // 힌트개수 0개 (검정) -> 사용버튼 비활성화
+    public GameObject keyO; // 열쇠개수 1개 이상 -> 사용버튼 원래대로 
+    public GameObject keyX; // 열쇠개수 0개 (검정) -> 사용버튼 비활성화
+    int key = 0;
+    int hint = 0;
+    int coin = 2;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        Keytxt.text = key.ToString();
+        Hinttxt.text = hint.ToString();
+        Cointxt.text = coin.ToString();
+    }
+
+    public void KeyPlus()
+    {
+        if (coin != 0)
+        {
+            key += 1;
+            Keytxt.text = key.ToString();
+            keyO.SetActive(true);
+            keyX.SetActive(false);
+        }
+    }
+
+    public void HintPlus()
+    {
+        if (coin != 0)
+        {
+            hint += 1;
+            Hinttxt.text = hint.ToString();
+            hintO.SetActive(true);
+            hintX.SetActive(false);
+        }
+
+    }
+
+    public void CoinPlus()
+    {
+        coin += 1;
+        Cointxt.text = coin.ToString();
+        Nhint.SetActive(false);
+        Yhint.SetActive(true);
+        if (coin > 1)
+        {
+            Nkey.SetActive(false);
+            Ykey.SetActive(true);
+        }
+    }
+
+    public void KeyUse()
+    {
+        if (key != 0)
+        {
+            key -= 1;
+            Keytxt.text = key.ToString();
+        }
+
+        if (key == 0)
+        {
+            keyO.SetActive(false);
+            keyX.SetActive(true);
+        }
+    }
+
+    public void HintUse()
+    {
+        if (hint != 0)
+        {
+            hint -= 1;
+            Hinttxt.text = hint.ToString();
+        }
+
+        if (hint == 0)
+        {
+            hintO.SetActive(false);
+            hintX.SetActive(true);
+        }
+    }
+
+    public void CoinUse()
+    {
+        if (coin != 0)
+        {
+            coin -= 1;
+            Cointxt.text = coin.ToString();
+        }
+
+        if (coin == 0)
+        {
+            Nhint.SetActive(true);
+            Yhint.SetActive(false);
+            Nkey.SetActive(true);
+            Ykey.SetActive(false);
+        }
+
+        if (coin == 1)
+        {
+            Nkey.SetActive(true);
+            Ykey.SetActive(false);
+        }
+    }
+
+    public void CoinKeyUse()
+    {
+        if (coin >= 2)
+        {
+            coin -= 2;
+            Cointxt.text = coin.ToString();
+        }
+
+        if (coin < 2)
+        {
+            Nkey.SetActive(true);
+            Ykey.SetActive(false);
+        }
+
+        if (coin < 1)
+        {
+            Nhint.SetActive(true);
+            Yhint.SetActive(false);
+            Nkey.SetActive(true);
+            Ykey.SetActive(false);
+        }
+    }
+}
