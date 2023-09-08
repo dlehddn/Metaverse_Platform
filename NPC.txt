@@ -1,0 +1,128 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class NPCgirl : MonoBehaviour
+{
+    // Start is called before the first frame update
+
+    public Text Dialogue;
+    public GameObject nextbtn;
+    public GameObject exitbtn;
+    public GameObject backbtn;
+    public GameObject Img1;
+    public GameObject Img2;
+    public GameObject Img3;
+    public GameObject Img4; 
+    int count = 0;
+
+    void Start()
+    {
+        Dialogue.text = "안녕하세요 !\n저는 힌트요정 석기예요 !";
+       // exitbtn.SetActive(false);
+       // backbtn.SetActive(false);
+        //nextbtn.SetActive(true);
+    }
+
+    // Update is called once per frame
+
+    public void CountPlus()
+    {
+        count += 1;
+
+    }
+
+    public void CountMinus()
+    {
+        count -= 1;
+
+    }
+
+    public void CountZero()
+    {
+        count = 0;
+        Dialogue.text = "안녕하세요 !\n저는 힌트요정 석기예요 !";
+        exitbtn.SetActive(false);
+        nextbtn.SetActive(true);
+        backbtn.SetActive(false);
+        Img3.SetActive(false);
+    }
+
+    public void TextCount()
+    {
+        if (count == 1)
+        {
+            Dialogue.text = "퀘스트를 드리기 전에 먼저\n석기시대에 대한 설명을 드릴게요 !";
+            backbtn.SetActive(false);
+        }
+        if (count == 2)
+        {
+            Dialogue.text = "석기시대는 '구석기시대'와\n'신석기시대'를 모두 포함하는 말이에요.\n모두가 평등한 자급자족의 시대였죠";
+            backbtn.SetActive(true);
+        }
+
+        if (count == 3)
+        {
+            Dialogue.text = "이제 석기시대의 생활모습과\n도구에 대해 알아볼까요?";
+            Img1.SetActive(false);
+        }
+
+        if (count == 4)
+        {
+            Dialogue.text = "석기시대에는 지금과 같은\n완성된 도구가 없었기 때문에\n돌이나 나무로 도구를 만들어 사용했어요.";
+            Img1.SetActive(true);
+        }
+
+        if (count == 5)
+        {
+            Dialogue.text = "이런 도구들을 뗀석기, 간석기라고 불렀어요.\n돌을 때리거나 갈아서 만들었다는 뜻이에요 !";
+            Img1.SetActive(true); 
+            Img2.SetActive(false);      
+        }
+
+        if (count == 6)
+        {
+            Dialogue.text = "위의 사진처럼 사람들은\n뗀석기와 간석기를 사용하여\n채집, 사냥, 고기잡이를 하며 살았어요";
+            Img2.SetActive(true); 
+            Img1.SetActive(false);           
+        }
+
+        if (count == 7)
+        {
+            Dialogue.text = "돌을 부딪혀 불을 피워 음식을 해먹기도 하고\n나무, 짚으로 만든 움집에서 생활했어요";
+            Img2.SetActive(true);
+        }
+
+        if (count == 8) 
+        {
+            Dialogue.text = "또한 식물섬유나 동물의 가죽으로\n만든 옷을 입고 살았답니다~";
+            Img2.SetActive(true);
+        } 
+
+        if (count == 9)
+        {
+            Dialogue.text = "석기시대에 대한 설명은 여기서 마칠게요.\n이제 주변을 돌아보면서\n석기시대의 생활을 체험해보세요 !";
+            Img2.SetActive(false);
+            Img4.SetActive(false);
+        }
+
+        if (count == 10)
+        {
+            Dialogue.text = "퀘스트는 '불피우기'와\n'동물사냥' 두 가지예요 !";
+            exitbtn.SetActive(false);
+            nextbtn.SetActive(true);
+            Img3.SetActive(false);
+            Img4.SetActive(true);
+        }
+
+        if (count == 11)
+        {
+            Dialogue.text = "퀘스트에 대한 힌트가 필요하다면\n상점에서 힌트를 구매해서 사용하세요 !";
+            exitbtn.SetActive(true);
+            nextbtn.SetActive(false);        
+            Img3.SetActive(true);
+            Img4.SetActive(false);
+        }
+    }
+}
